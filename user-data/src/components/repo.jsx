@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
-import Users from "./users";
+// import axios from "axios";
+// import Users from "./users";
 class Repo extends Component {
-  state = {
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+
+    };
+}
 
   componentDidMount() {
 
@@ -12,7 +16,7 @@ class Repo extends Component {
 
   render() {
     return (
-     <h1>test!</h1>
+    <h1>Test</h1>
     );
   }
 }
