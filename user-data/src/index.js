@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Users from "./components/users";
-import Repo from "./components/repo";
+// import Repo from "./components/repo";
 import NotFound from "./components/notFound";
 import Modal from "./components/modal-data";
 
@@ -19,7 +19,7 @@ const routing = (
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/users" component={Users} />
-        <Route path="/repo" component={Repo} />
+        {/* <Route path="/repo" component={Repo} /> */}
         <Route path="/modal" component={Modal} />
         <Route component={NotFound} />
       </Switch>

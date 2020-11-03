@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
-import Repo from "./repo";
+// import Repo from "./repo";
 import NamesContainer from "./namesContainer";
 import Name from "./name";
 import Modal from "./modal-data";
@@ -38,8 +38,6 @@ class Users extends Component {
           return data.login;
         });
         this.state.search = val;
-
-
       })
       .catch(function (error) {
         console.log(error);
@@ -58,17 +56,15 @@ class Users extends Component {
   handleClick = (e) =>{
     let val = e.target.text;
     axios.get(`https://api.github.com/users/${val}/repos`).then((res) => {
-      this.setState({ 
-        repoData: res.data 
-      });
-    res.data.map((data) => {
-      this.setState({repoNames: data.name});
-      console.log(this.state.repoNames);
-    });
-});
-      
+      res.data.map((r) =>{
+        var repo_names = [];
+        repo_names = r.name;
+        this.setState({ repoNames: repo_names });
+        console.log(this.state.repoNames);
         
-}
+      });
+        });
+    }
 
   getFollowers = (e) =>{
     let val = e.target.text;
@@ -77,7 +73,7 @@ class Users extends Component {
       var follower_names = [];
       follower_names = r.login;
       this.setState({ followers: follower_names });
-      // console.log(this.state.followers);
+      console.log(this.state.followers);
       
     });
       });
@@ -97,10 +93,10 @@ class Users extends Component {
                 className="img-responsive"
               />
               <br />
-              
-              <a onClick={e => this.handleClick(e)}>
-                {data.login}
-              </a>              
+              <b>user name: &nbsp; &nbsp; </b>
+                <a onClick={e => this.handleClick(e)}>{data.login}</a>
+              <br/>
+              <button onClick={e => this.getFollowers(e)}>Followers</button>           
             </td>
           </tr>
         </tbody>
