@@ -6,7 +6,6 @@ import NamesContainer from "./namesContainer";
 import Name from "./name";
 import Modal from "./modal-data";
 
-
 class Users extends Component {
   constructor(props){
     super(props);
@@ -20,31 +19,27 @@ class Users extends Component {
       followers: [],
       pageNumber: 1,
       items: 4,
-      hasMore: true
+      hasMore: true,
+      repoData: []
     };
 }
-
-  //   login = this.state.user;
   componentDidMount() {
     axios
       .get("./users.json?since=${this.state.pageNumber}")
       .then((res) => {
         this.setState({ 
-          //updating the data
           user: [...this.state.user, ...res.data],
-          //updating page numbers
           pageNumber: this.state.pageNumber + 1 
         });
-        // console.log(res.data);
         res.data.map((data) => {
-          // return data.login;
           this.setState({login_names: data.login});
         });
-        // console.log(val);
         let val = res.data.map((data) => {
           return data.login;
         });
         this.state.search = val;
+
+
       })
       .catch(function (error) {
         console.log(error);
@@ -62,39 +57,31 @@ class Users extends Component {
   
   handleClick = (e) =>{
     let val = e.target.text;
-    // console.log(e.target.text);
     axios.get(`https://api.github.com/users/${val}/repos`).then((res) => {
-    res.data.map((r) =>{
-      var repo_names = [];
-      repo_names = r.name;
-      // console.log(r.name);
-      this.setState({ repoNames: repo_names });
+      this.setState({ 
+        repoData: res.data 
+      });
+    res.data.map((data) => {
+      this.setState({repoNames: data.name});
       console.log(this.state.repoNames);
     });
-      // console.log(this.state.repoNames);
-      // console.log(res.data);
-      });
-      if(!this.state.repoNames){
-        return <Modal login={this.state.repoNames}></Modal>;
-      }
-  }
+});
+      
+        
+}
 
   getFollowers = (e) =>{
     let val = e.target.text;
-    // console.log(e.target.text);
     axios.get(`https://api.github.com/users/${val}/followers`).then((res) => {
     res.data.map((r) =>{
       var follower_names = [];
       follower_names = r.login;
-      // console.log(r.name);
       this.setState({ followers: follower_names });
-      console.log(this.state.followers);
+      // console.log(this.state.followers);
+      
     });
-      // console.log(this.state.repoNames);
-      // console.log(res.data);
       });
   }
-
 
   dataTable() {
     return this.state.user.map((data, i) => {
@@ -111,9 +98,9 @@ class Users extends Component {
               />
               <br />
               
-              <a href="" onClick={e => this.handleClick(e)} value={data.login} target="_blank">
+              <a onClick={e => this.handleClick(e)}>
                 {data.login}
-              </a>
+              </a>              
             </td>
           </tr>
         </tbody>
@@ -121,8 +108,6 @@ class Users extends Component {
     });
   }
   render() {
-    //console.log(this.state.user[0]);
-    // console.log(this.state.repoNames);
     return (
       <div style={{textAlign: 'center', paddingTop: '5vh' }}>
         <h1>User Details</h1>

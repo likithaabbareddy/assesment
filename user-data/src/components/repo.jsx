@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-// import axios from "axios";
-// import Users from "./users";
+import axios from "axios";
+import Users from "./users";
 class Repo extends Component {
   constructor(props){
     super(props);
     this.state = {
+      login_names: [],
 
     };
+}
+
+handleClick (){
 }
 
   componentDidMount() {
@@ -16,6 +20,7 @@ class Repo extends Component {
 
   render() {
     return (
+    // <button onClick={this.handleClick()}>click</button>
     <h1>Test</h1>
     );
   }

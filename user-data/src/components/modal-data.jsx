@@ -14,23 +14,23 @@ Modal.setAppElement("#root");
  
 // export default ModalData;
 
-export default function App(props) {
+export default function App() {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(props.login);
+  // console.log(props.value)
   function toggleModal() {
     setIsOpen(!isOpen);
   }
 
   return (
     <div className="App">
-      <button onClick={toggleModal} >View User</button>
+      <button onClick={toggleModal}>View User</button>
 
       <Modal
         isOpen={isOpen}
         onRequestClose={toggleModal}
         contentLabel="My dialog"
       >
-        <div>gi</div>
+        <div>test</div>
         <button onClick={toggleModal}>Close</button>
       </Modal>
     </div>
