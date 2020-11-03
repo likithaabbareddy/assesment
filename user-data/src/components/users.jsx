@@ -22,7 +22,7 @@ class Users extends Component {
 }
   componentDidMount() {
     axios
-      .get("./users.json?since=${this.state.pageNumber}")
+      .get("https://api.github.com/users?since=${this.state.pageNumber}")
       .then((res) => {
         this.setState({ 
           user: [...this.state.user, ...res.data],
