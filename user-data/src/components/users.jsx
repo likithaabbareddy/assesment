@@ -18,7 +18,6 @@ class Users extends Component {
       pageNumber: 1,
       items: 4,
       hasMore: true,
-      repoData: []
     };
 }
   componentDidMount() {
@@ -109,7 +108,7 @@ class Users extends Component {
           <label><h3>Search:&nbsp;&nbsp;&nbsp;</h3></label>
           <input type='text' value= {this.state.searchTerm} onChange = {this.editSearchTerm} placeholder = 'Search for a name!' />
           <br/>
-          {/* <NamesContainer names={this.dynamicSearch()} /> */}
+          <NamesContainer names={this.dynamicSearch()} />
 
         </div>
         <div style={{textAlign: 'center', paddingTop: '10vh' }}>
