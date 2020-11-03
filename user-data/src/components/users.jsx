@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
-// import Repo from "./repo";
 import NamesContainer from "./namesContainer";
 import Name from "./name";
-import Modal from "./modal-data";
 
 class Users extends Component {
   constructor(props){

@@ -6,21 +6,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Users from "./components/users";
-// import Repo from "./components/repo";
 import NotFound from "./components/notFound";
-import Modal from "./components/modal-data";
 
 const routing = (
   <Router>
     <div>
-    {/* <Route exact path="/" component={App} />
-      <Route path="/users" component={Users} />
-      <Route path="/repo" component={Repo} /> */}
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/users" component={Users} />
-        {/* <Route path="/repo" component={Repo} /> */}
-        <Route path="/modal" component={Modal} />
         <Route component={NotFound} />
       </Switch>
     </div>
@@ -28,9 +21,6 @@ const routing = (
 )
 
 ReactDOM.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>,
   routing,document.getElementById("root")
 );
 
